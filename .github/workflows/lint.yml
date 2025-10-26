@@ -13,7 +13,7 @@ jobs:
   code-lint:
     runs-on: self-hosted
     container:
-      image: ghcr.io/shakir85/tf-tools:latest
+      image: ghcr.io/stackgarage/tf-tools:latest
 
     steps:
       - name: Checkout code

@@ -24,7 +24,7 @@ jobs:
           - path: "./proxmox/cloud-img-download"
             name: "cloud-img"
     container:
-      image: ghcr.io/shakir85/tf-tools:latest
+      image: ghcr.io/stackgarage/tf-tools:latest
 
     steps:
       - name: Checkout code
