@@ -12,7 +12,7 @@ resource "helm_release" "csi_driver_nfs" {
       }
       controller = {
         runOnControlPlane = true
-        replicas          = 2
+        replicas          = 1
       }
     })
   ]
