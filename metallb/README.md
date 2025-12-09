@@ -20,7 +20,7 @@ This will:
 
 The following requirements are needed by this module:
 
-- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.14.0)
+- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.13.0)
 
 - <a name="requirement_helm"></a> [helm](#requirement\_helm) (~> 2.9.0)
 
