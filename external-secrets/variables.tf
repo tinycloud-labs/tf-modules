@@ -15,3 +15,9 @@ variable "config_context" {
   type        = string
   default     = null
 }
+
+variable "create_namespace" {
+  description = "Whether to create namespace"
+  type        = bool
+  default     = true
+}
