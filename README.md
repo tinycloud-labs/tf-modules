@@ -2,4 +2,4 @@
 
 ## Overview
 
-This repository contains various Terraform modules.
+Vendoring some Terraform modules.

@@ -20,3 +20,10 @@ variable "config_context" {
   type        = string
   default     = null
 }
+
+variable "chart_version" {
+  description = "Metallb chart version"
+  type        = string
+  default     = "0.15.3"
+
+}
