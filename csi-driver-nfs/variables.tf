@@ -15,3 +15,9 @@ variable "config_context" {
   type        = string
   default     = null
 }
+
+variable "chart_version" {
+  description = "CSI NFS Driver chart version"
+  type        = string
+  default     = "4.12.1"
+}

@@ -15,3 +15,15 @@ variable "config_context" {
   type        = string
   default     = null
 }
+
+variable "chart_version" {
+  description = "Cert manager chart version"
+  type        = string
+  default     = "v1.19.2"
+}
+
+variable "enabled_prometheus" {
+  description = "Whether to enable Prometheus metrics collection for cert manager (true/false as strings)"
+  type        = string
+  default     = "false"
+}
