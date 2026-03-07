@@ -21,3 +21,15 @@ variable "create_namespace" {
   type        = bool
   default     = true
 }
+
+variable "chart_version" {
+  description = "ESO chart version"
+  type        = string
+  default     = "1.3.2"
+}
+
+variable "helm_set_values" {
+  description = "Optional Helm set values"
+  type        = map(string)
+  default     = {}
+}
