@@ -48,7 +48,7 @@ jobs:
           terraform-docs markdown document ${{ matrix.module.path }} --output-file README.md --output-mode inject
 
       - name: Upload generated docs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: generated-docs-${{ matrix.module.name }}
           path: ${{ matrix.module.path }}/README.md
@@ -68,7 +68,7 @@ jobs:
           repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
 
       - name: Download all docs
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           path: ./artifacts
 
