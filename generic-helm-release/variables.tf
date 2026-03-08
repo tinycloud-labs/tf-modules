@@ -22,9 +22,8 @@ variable "create_namespace" {
 }
 
 variable "chart_version" {
-  description = "ESO chart version"
+  description = "Chart version"
   type        = string
-  default     = "2.0.1"
 }
 
 variable "helm_set_values" {
