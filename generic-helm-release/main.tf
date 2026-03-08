@@ -2,11 +2,11 @@ locals {
   helm_values = []
 }
 
-resource "helm_release" "external-secrets" {
-  name             = "external-secrets"
+resource "helm_release" "this" {
+  name             = var.release_name
   namespace        = var.kube_namespace
-  repository       = "https://charts.external-secrets.io"
-  chart            = "external-secrets"
+  repository       = var.helm_repository
+  chart            = var.chart
   version          = var.chart_version
   create_namespace = var.create_namespace
 

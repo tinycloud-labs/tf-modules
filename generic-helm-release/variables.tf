@@ -33,3 +33,19 @@ variable "helm_set_values" {
   type        = map(string)
   default     = {}
 }
+
+variable "release_name" {
+  description = "Helm release name"
+  type        = string
+}
+
+variable "helm_repository" {
+  description = "Chart source repository"
+  type        = string
+}
+
+variable "chart" {
+  description = "Target chart name"
+  type        = string
+}
+
