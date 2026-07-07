@@ -14,7 +14,6 @@ on:
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.state == 'open'
     strategy:
       matrix:
         module:
@@ -30,11 +29,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Run Git Setup
         uses: ./.github/actions/setup-git
         with:
-          repo-path: ${{ github.workspace }}
+          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
 
       - name: Fetch latest changes
         run: |
@@ -64,7 +65,7 @@ jobs:
       - name: Run Git Setup
         uses: ./.github/actions/setup-git
         with:
-          repo-path: ${{ github.workspace }}
+          repo-path: /__w/proxmox-tf-modules/proxmox-tf-modules
 
       - name: Download all docs
         uses: actions/download-artifact@v8
