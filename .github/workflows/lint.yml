@@ -20,6 +20,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - run: |
+          echo "workspace: ${{ github.workspace }}"
+          pwd
+          git rev-parse --show-toplevel
       - name: Run Git Setup
         uses: ./.github/actions/setup-git
         with:
