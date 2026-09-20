@@ -38,4 +38,4 @@ terraform.rc
 proxmox_api.auto.tfvars
 .pem
 .DS_Store
-./idea
+.idea/
