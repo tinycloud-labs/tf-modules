@@ -38,12 +38,12 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # aio               = "io_uring"
     # backup            = true
     # cache             = "none"
-    # discard           = "ignore"
-    # file_format       = "qcow2"
     # iothread          = false
     # path_in_datastore = "101/vm-101-disk-0.qcow2"
     # replicate         = true
-    # ssd               = false
+    ssd          = var.ssd
+    discard      = var.discard_disk
+    file_format  = var.file_format
     datastore_id = var.disk_name
     file_id      = "${element(var.cloud_image_info, 0)}:iso/${element(var.cloud_image_info, 1)}"
     interface    = var.disk_interface

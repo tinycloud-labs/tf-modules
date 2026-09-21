@@ -107,3 +107,20 @@ variable "firewall_is_enabled" {
   type        = bool
   description = "Whether this interface's firewall rules should be used"
 }
+
+variable "ssd" {
+  type        = bool
+  default     = true
+  description = "Whether to flag to storage as SSD"
+}
+
+variable "discard_disk" {
+  type        = string
+  default     = "off"
+  description = "Useful when using storage pool, let freed space return to the pool"
+}
+
+variable "file_format" {
+  type        = string
+  description = "Set file format that's suitable with the backend storage HW. Values can be raw or qcow2. If you're using zfs pool, set this to `raw`"
+}
