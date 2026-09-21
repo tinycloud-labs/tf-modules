@@ -124,3 +124,8 @@ variable "file_format" {
   type        = string
   description = "Set file format that's suitable with the backend storage HW. Values can be raw or qcow2. If you're using zfs pool, set this to `raw`"
 }
+
+variable "snippet_store_id" {
+  type        = string
+  description = "Storage ID where cloud-init snippets should be stored. Some storage backends, like zfs, do not support snippet type storage out of the box. This variable allows using a secondary store for this reason."
+}

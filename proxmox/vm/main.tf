@@ -85,7 +85,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
 
 resource "proxmox_virtual_environment_file" "cloud_config" {
   content_type = "snippets"
-  datastore_id = var.disk_name
+  datastore_id = var.snippet_store_id
   node_name    = var.proxmox_node_name
 
   source_raw {
