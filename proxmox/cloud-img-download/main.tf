@@ -3,7 +3,7 @@ locals {
   filename = element(local.url_list, length(local.url_list) - 1)
 }
 
-resource "proxmox_virtual_environment_download_file" "cloud_image_file" {
+resource "proxmox_download_file" "this" {
   content_type = "iso"
   datastore_id = var.storage_pool
   file_name    = "${local.filename}.img"
