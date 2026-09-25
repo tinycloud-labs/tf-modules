@@ -12,8 +12,17 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
   name        = var.hostname
   description = var.description
   tags        = var.tags
+  vm_id       = var.vm_id
 
   node_name = var.proxmox_node_name
+
+  dynamic "smbios" {
+    for_each = var.enable_smbios ? [1] : []
+
+    content {
+      serial = "h=${var.proxmox_node_name};i=${var.vm_id}"
+    }
+  }
 
   agent {
     # read 'Qemu guest agent' section, change to true only when ready

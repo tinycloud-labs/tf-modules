@@ -13,6 +13,33 @@ variable "hostname" {
   }
 }
 
+variable "vm_id" {
+  type        = number
+  description = "Optional VMID for the Proxmox VM. If left null, PVE will auto-assign one."
+  default     = null
+
+  validation {
+    condition     = var.vm_id == null || var.vm_id == floor(var.vm_id)
+    error_message = "vm_id must be a whole integer (no decimals)."
+  }
+
+  validation {
+    condition     = var.vm_id == null || (var.vm_id >= 100 && var.vm_id <= 999999999)
+    error_message = "vm_id must be between 100 and 999999999 (Proxmox VMID range)."
+  }
+}
+
+variable "enable_smbios" {
+  type        = bool
+  description = "Whether to set a custom smbios serial on the VM."
+  default     = false
+
+  validation {
+    condition     = !var.enable_smbios || var.vm_id != null
+    error_message = "enable_smbios requires vm_id to be explicitly set (cannot be null)."
+  }
+}
+
 variable "description" {
   default     = "Managed by Terraform"
   type        = string
