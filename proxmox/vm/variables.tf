@@ -143,8 +143,12 @@ variable "ssd" {
 
 variable "discard_disk" {
   type        = string
-  default     = "off"
   description = "Useful when using storage pool, let freed space return to the pool"
+
+  validation {
+    condition     = "ignore" || "on"
+    error_message = "Only supported values are ignore or on"
+  }
 }
 
 variable "file_format" {
