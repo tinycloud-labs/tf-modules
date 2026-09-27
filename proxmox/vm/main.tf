@@ -16,6 +16,13 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
 
   node_name = var.proxmox_node_name
 
+  lifecycle {
+    precondition {
+      condition     = !var.enable_smbios || var.vm_id != null
+      error_message = "enable_smbios requires vm_id to be explicitly set (cannot be null)."
+    }
+  }
+
   dynamic "smbios" {
     for_each = var.enable_smbios ? [1] : []
 
