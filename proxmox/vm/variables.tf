@@ -35,7 +35,7 @@ variable "enable_smbios" {
   default     = false
 
   validation {
-    condition     = !var.enable_smbios || var.vm_id != null
+    condition     = var.vm_id != null
     error_message = "enable_smbios requires vm_id to be explicitly set (cannot be null)."
   }
 }
