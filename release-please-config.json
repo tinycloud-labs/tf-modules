@@ -1,4 +1,7 @@
 {
+  "release-type": "terraform-module",
+  "always-update": true,
+  "separate-pull-requests": true,
   "packages": {
     "proxmox/cloud-img-download": {
       "component": "cloud_img",
@@ -11,9 +14,6 @@
     "proxmox/vm": {
       "component": "proxmox_vm",
       "include-component-in-tag": true
-    },
-    "separate-pull-requests": true,
-    "release-type": "terraform-module",
-    "always-update": true
+    }
   }
 }
