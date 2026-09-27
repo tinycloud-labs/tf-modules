@@ -146,7 +146,7 @@ variable "discard_disk" {
   description = "Useful when using storage pool, let freed space return to the pool"
 
   validation {
-    condition     = "ignore" || "on"
+    condition     = var.discard_disk == "ignore" || var.discard_disk == "on"
     error_message = "Only supported values are ignore or on"
   }
 }
