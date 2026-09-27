@@ -1,0 +1,19 @@
+{
+  "packages": {
+    "proxmox/cloud-img-download": {
+      "component": "cloud_img",
+      "include-component-in-tag": true
+    },
+    "proxmox/lxc": {
+      "component": "proxmox_lxc",
+      "include-component-in-tag": true
+    },
+    "proxmox/vm": {
+      "component": "proxmox_vm",
+      "include-component-in-tag": true
+    },
+    "separate-pull-requests": true,
+    "release-type": "terraform-module",
+    "always-update": true
+  }
+}

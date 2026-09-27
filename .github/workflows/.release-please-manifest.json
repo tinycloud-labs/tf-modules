@@ -1,0 +1,8 @@
+{
+  "proxmox/vm": "2.0.0",
+  "proxmox/vm+FILLER": "0.0.0",
+  "proxmox/lxc": "2.0.0",
+  "proxmox/lxc+FILLER": "0.0.0",
+  "proxmox/cloud-img-download": "0.0.0",
+  "proxmox/cloud-img-download+FILLER": "0.0.0"
+}
