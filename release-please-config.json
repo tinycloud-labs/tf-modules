@@ -4,15 +4,15 @@
   "separate-pull-requests": true,
   "packages": {
     "proxmox/cloud-img-download": {
-      "component": "cloud_img",
+      "component": "image",
       "include-component-in-tag": true
     },
     "proxmox/lxc": {
-      "component": "proxmox_lxc",
+      "component": "lxc",
       "include-component-in-tag": true
     },
     "proxmox/vm": {
-      "component": "proxmox_vm",
+      "component": "vm",
       "include-component-in-tag": true
     }
   }
