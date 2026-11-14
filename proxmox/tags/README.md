@@ -1,7 +1,7 @@
 ## Usage
 This Terraform module provides a standardized and consistent set of tags for compute resources. It does not provision any resources, it's just a bunch of variables with an output block to enforce uniform resource tagging across resources and centralize tag definitions.
 
-There are two required tags: `env` and `os`, while allowing optional tags such as `cluster`, `flavor`, and `role`. The idea of this module is  and enforce uniform resource tagging across resources.
+There are two required tags: `env` and `os`, plus optional tags: `cluster`, `flavor`, `role`, and `size`.
 
 Empty optional values are excluded from the output map.
 
@@ -14,7 +14,7 @@ This module helps solve that by letting you define consistent, standardized tags
 Example usage:
 ```hcl
 module "tags_group_1" {
-  source      = "git::https://github.com/<YOUR_REPO>/modules/tags?ref=<RELEASE_ID>"
+  source      = "git::https://github.com/tinycloud-labs/tf-modules.git//proxmox/tags?ref=tags-v0.1.0"
   environment = "prod"
   cluster     = "main"
   flavor      = "k3s"
@@ -23,18 +23,18 @@ module "tags_group_1" {
 }
 
 module "tags_group_2" {
-  source      = "git::https://github.com/<YOUR_REPO>/modules/tags?ref=<RELEASE_ID>"
+  source      = "git::https://github.com/tinycloud-labs/tf-modules.git//proxmox/tags?ref=tags-v0.1.0"
   environment = "dev"
   os          = "rhel7"
   role        = "proxy"
 }
 
-resource "proxmox_vm_qemu" "vm_1" {
+resource "proxmox_virtual_environment_vm" "vm_1" {
   name = "k8s-worker-01"
   tags = [for key, value in module.tags_group_1.tags : "${key}:${value}"]
 }
 
-resource "proxmox_vm_qemu" "vm_2" {
+resource "proxmox_virtual_environment_vm" "vm_2" {
   name = "some-big-beautiful-proxy"
   tags = [for key, value in module.tags_group_2.tags : "${key}:${value}"]
 }
@@ -42,17 +42,18 @@ resource "proxmox_vm_qemu" "vm_2" {
 
 ## Inputs
 
-- `environment` - (string) Environment in which the VM is deployed. Default: `"prod"`.
+- `environment` - (string, required) Environment in which the VM is deployed (e.g., prod, test).
+- `os` - (string, required) Operating system of the VM (e.g., debian12, ubuntu).
 - `cluster` - (string) Cluster name the VM is part of. Default: `""`.
 - `flavor` - (string) Kubernetes flavor (e.g., k3s, kubeadm). Default: `""`.
-- `os` - (string) Operating system of the VM (e.g., debian12, ubuntu). Default: `"debian12"`.
 - `role` - (string) Role of the VM within the cluster or system. Default: `""`.
+- `size` - (string) One of `small`, `medium`, `large`. Default: `""`.
 
 ## Outputs
 
-- `tags` - A map of the generated tags in the format `key:value`, excluding empty values.
+- `tags` - A map of tag names to values, excluding empty values.
 
 ## Notes
 
 - Empty values are excluded from the `tags` output to avoid unnecessary or redundant tags.
-- Use `null` to remove a tag rather than an empty string.
+- Leave an optional input unset (or `""`) to omit that tag.

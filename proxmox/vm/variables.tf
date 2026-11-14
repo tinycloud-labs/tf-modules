@@ -100,7 +100,13 @@ variable "network_interface" {
 variable "mac_address" {
   type        = string
   default     = null
-  description = "Unicast MAC address of the network interface. Helpful when you want to set a static DHCP reservation in your network. If not set, Proxmox will generate a random MAC address."
+  nullable    = true
+  description = "Unicast MAC address of the network interface (e.g. `BC:24:11:AA:BB:CC`). Set it for a static DHCP reservation; leave it `null` to let Proxmox generate one."
+
+  validation {
+    condition     = var.mac_address == null || can(regex("^[0-9A-Fa-f][02468ACEace](:[0-9A-Fa-f]{2}){5}$", var.mac_address))
+    error_message = "mac_address must be a unicast MAC in the form XX:XX:XX:XX:XX:XX, or null."
+  }
 }
 
 variable "cloud_image_info" {

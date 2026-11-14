@@ -1,7 +1,6 @@
-
 # -- Meta variables ----------
 variable "description" {
-  default     = "Manage by Terraform"
+  default     = "Managed by Terraform"
   type        = string
   description = "Container description"
 }
@@ -24,7 +23,7 @@ variable "template_file_id" {
 variable "os_type" {
   default     = "unmanaged"
   type        = string
-  description = "OS type: Alpine, Ubunt ...etc"
+  description = "OS type, e.g. `alpine`, `ubuntu`, `debian`, or `unmanaged`."
 }
 
 variable "temp_password" {

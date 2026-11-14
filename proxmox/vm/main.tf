@@ -25,7 +25,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
   }
 
   agent {
-    # read 'Qemu guest agent' section, change to true only when ready
+    # Requires qemu-guest-agent in the guest (installed by cloud-init.yaml)
     enabled = true
     # timeout = "15m"
     # trim    = false
@@ -80,7 +80,7 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
     # disconnected = false
     # enabled      = true
     firewall    = var.firewall_is_enabled
-    mac_address = var.mac_address != null ? var.mac_address : null
+    mac_address = var.mac_address
     # model        = "virtio"
     # mtu          = 0
     # queues       = 0
@@ -90,7 +90,6 @@ resource "proxmox_virtual_environment_vm" "vm_resource" {
 
   serial_device {}
 }
-
 
 resource "proxmox_virtual_environment_file" "cloud_config" {
   content_type = "snippets"

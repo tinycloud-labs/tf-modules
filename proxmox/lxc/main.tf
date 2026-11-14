@@ -39,5 +39,4 @@ resource "proxmox_virtual_environment_container" "lxc_container" {
   }
 
   tags = var.tags
-
 }
