@@ -28,27 +28,8 @@ module "vm" {
 
 Available versions are on the [releases page](https://github.com/tinycloud-labs/tf-modules/releases), and each module has its own `CHANGELOG.md`.
 
-## Releases
 
-Releases are automated with [release-please](https://github.com/googleapis/release-please). Each module is versioned independently, so use [Conventional Commits](https://www.conventionalcommits.org/) in PR titles:
-
-- `fix:` → patch
-- `feat:` → minor
-- `feat!:` or a `BREAKING CHANGE:` footer → major
-- `chore:`, `docs:`, `ci:` → no release
-
-Merging to `main` opens or updates a release PR per module. Merging that PR tags the release and updates the module's changelog.
-
-## Development
-
-Requires Terraform `>= 1.13` and [TFLint](https://github.com/terraform-linters/tflint).
-
-```bash
-terraform fmt -recursive
-tflint --init && tflint --recursive --config "$PWD/.tflint.hcl"
-```
-
-### Tests
+## Tests
 
 Each module has native Terraform tests in `tests/*.tftest.hcl`. Providers are mocked, so the tests need no Proxmox access:
 
@@ -58,6 +39,4 @@ terraform init -backend=false
 terraform test
 ```
 
-They check the module's own logic (inputs, validations, derived values), not whether Proxmox accepts the config.
-
-CI runs the lint and test checks on every PR that touches `proxmox/**`.
+They check the module's own logic (inputs, validations, derived values) only. CI runs the lint and test checks on every PR that touches `proxmox/**`.
