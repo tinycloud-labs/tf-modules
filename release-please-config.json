@@ -1,19 +1,22 @@
 {
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "release-type": "terraform-module",
-  "always-update": true,
+  "include-component-in-tag": true,
   "separate-pull-requests": true,
+  "always-update": true,
   "packages": {
     "proxmox/cloud-img-download": {
-      "component": "image",
-      "include-component-in-tag": true
+      "component": "image"
     },
     "proxmox/lxc": {
-      "component": "lxc",
-      "include-component-in-tag": true
+      "component": "lxc"
     },
     "proxmox/vm": {
-      "component": "vm",
-      "include-component-in-tag": true
+      "component": "vm"
+    },
+    "proxmox/tags": {
+      "component": "tags",
+      "initial-version": "0.1.0"
     }
   }
 }

@@ -1,0 +1,48 @@
+name: TF Test
+
+# Unit tests only: providers are mocked so no Proxmox access or secrets are needed.
+
+on:
+  pull_request:
+    paths:
+      - "proxmox/**"
+      - ".github/workflows/test.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "proxmox/**"
+      - ".github/workflows/test.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  terraform-test:
+    name: test (${{ matrix.module }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - proxmox/cloud-img-download
+          - proxmox/lxc
+          - proxmox/tags
+          - proxmox/vm
+    defaults:
+      run:
+        working-directory: ${{ matrix.module }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform init
+        run: terraform init -backend=false -input=false
+
+      - name: Terraform test
+        run: terraform test

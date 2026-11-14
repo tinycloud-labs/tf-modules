@@ -1,6 +1,5 @@
 locals {
-  url_list = split("/", var.cloud_image_url)
-  filename = element(local.url_list, length(local.url_list) - 1)
+  filename = basename(var.cloud_image_url)
 }
 
 resource "proxmox_download_file" "this" {

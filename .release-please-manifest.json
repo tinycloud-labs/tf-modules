@@ -4,5 +4,6 @@
   "proxmox/lxc": "2.1.0",
   "proxmox/lxc+FILLER": "0.0.0",
   "proxmox/cloud-img-download": "0.1.0",
-  "proxmox/cloud-img-download+FILLER": "0.0.0"
+  "proxmox/cloud-img-download+FILLER": "0.0.0",
+  "proxmox/tags+FILLER": "0.0.0"
 }

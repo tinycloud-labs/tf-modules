@@ -1,0 +1,46 @@
+name: TF Lint
+
+on:
+  pull_request:
+    paths:
+      - "proxmox/**"
+      - ".tflint.hcl"
+      - ".github/workflows/lint.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "proxmox/**"
+      - ".tflint.hcl"
+      - ".github/workflows/lint.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  tflint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform fmt
+        run: terraform fmt -recursive -check -diff
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v6
+        with:
+          tflint_version: v0.61.0
+
+      - name: TFLint init
+        run: tflint --init
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: TFLint
+        run: tflint --recursive --config "$GITHUB_WORKSPACE/.tflint.hcl" --format compact
