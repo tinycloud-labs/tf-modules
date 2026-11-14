@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/tinycloud-labs/tf-modules/compare/lxc-v2.1.0...lxc-v2.2.0) (2026-11-14)
+
+
+### Features
+
+* restructure tf files and releases and add unit tests ([814ec3c](https://github.com/tinycloud-labs/tf-modules/commit/814ec3cdaedf90e2afb67062b650e1e5fbd971d2))
+
 ## [2.1.0](https://github.com/tinycloud-labs/tf-modules/compare/lxc-v2.0.0...lxc-v2.1.0) (2026-10-04)
 
 
